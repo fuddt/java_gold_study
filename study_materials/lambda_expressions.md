@@ -61,12 +61,16 @@ interface Calculator {
     int calculate(int a, int b);
 }
 
-// 使用例
-Calculator add = (a, b) -> a + b;
-Calculator multiply = (a, b) -> a * b;
+public class Main {
+    public static void main(String[] args) {
+        // 使用例
+        Calculator add = (a, b) -> a + b;
+        Calculator multiply = (a, b) -> a * b;
 
-System.out.println(add.calculate(5, 3));      // 8
-System.out.println(multiply.calculate(5, 3)); // 15
+        System.out.println(add.calculate(5, 3));      // 8
+        System.out.println(multiply.calculate(5, 3)); // 15
+    }
+}
 ```
 
 ### 例4: 変数のキャプチャ
