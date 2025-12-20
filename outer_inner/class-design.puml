@@ -1,0 +1,15 @@
+@startuml
+skinparam componentStyle rectangle
+
+component "module util" {
+    [util package]
+}
+
+component "module app" {
+    [app package]
+}
+
+"module util" --> "module app" : exports util
+"module app" ..> "module util" : requires util\n(未宣言)
+
+@enduml
