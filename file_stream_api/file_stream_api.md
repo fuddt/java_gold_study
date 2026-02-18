@@ -1,10 +1,10 @@
 # File Stream API - Java Gold 対策
 
-ファイルとディレクトリを Stream で扱う API について学ぶよ。これ、試験でめっちゃ出るから要注意だね。
+ファイルとディレクトリを Stream で扱う API について学ぶ。これは試験で非常に頻出するため要注意である。
 
 ## 概要
 
-Java 8 から、ファイル操作が Stream API と統合されて、めちゃくちゃ便利になったんだよね。でも、**リソースのクローズが必須**っていう罠があるから、そこが試験の引っかけポイントになってる。
+Java 8 から、ファイル操作が Stream API と統合されて、めちゃくちゃ便利になったんである。でも、**リソースのクローズが必須**っていう罠があるから、そこが試験の引っかけポイントになってる。
 
 ### 主要メソッド一覧
 
@@ -23,7 +23,7 @@ Java 8 から、ファイル操作が Stream API と統合されて、めちゃ�
 
 ## 1. Files.lines() - ファイルを Stream として読み込む
 
-ファイルの内容を `Stream<String>` として読み込むメソッドだよ。1行が1つの要素になる。
+ファイルの内容を `Stream<String>` として読み込むメソッドである。1行が1つの要素になる。
 
 ### 基本的な使い方
 
@@ -208,7 +208,7 @@ try (Stream<Path> paths = Files.walk(dir)) {
 
 ## 4. Files.find() - 条件付き再帰検索
 
-`Files.walk()` + フィルタリングを一緒にやってくれるメソッドだね。`BiPredicate<Path, BasicFileAttributes>` で条件を指定できるのが特徴。
+`Files.walk()` + フィルタリングを一緒に行うメソッドである。`BiPredicate<Path, BasicFileAttributes>` で条件を指定できるのが特徴である。
 
 ### シグネチャ
 
@@ -289,7 +289,7 @@ try (Stream<Path> paths = Files.find(dir, Integer.MAX_VALUE, matcher)) {
 }
 ```
 
-**違い**: `Files.find()` は `BasicFileAttributes` が使えるから、ファイルサイズや更新日時で効率的にフィルタリングできるんだよね。
+**違い**: `Files.find()` は `BasicFileAttributes` が使えるから、ファイルサイズや更新日時で効率的にフィルタリングできるんである。
 
 ### 試験ポイント
 
@@ -351,7 +351,7 @@ try (BufferedReader reader = Files.newBufferedReader(path)) {
 
 ## 6. Stream API との組み合わせ
 
-File Stream API は Stream API の全メソッドが使えるから、めっちゃ強力だよ。
+File Stream API は Stream API の全メソッドが使えるから、非常に強力である。
 
 ### 中間操作
 
@@ -432,7 +432,7 @@ try (Stream<Path> paths = Files.walk(dir)) {
 
 ## 7. 遅延評価の利点
 
-Stream は**遅延評価**だから、メモリ効率がめっちゃいいんだよね。
+Stream は**遅延評価**だから、メモリ効率が非常にいいんである。
 
 ### 遅延評価とは
 
@@ -470,7 +470,7 @@ try (Stream<String> lines = Files.lines(path)) {
 
 ### 注意点
 
-終端操作を実行しないと、何も起こらないよ。
+終端操作を実行しないと、何も起こらない。
 
 ```java
 // これは何も実行されない！
@@ -489,11 +489,11 @@ try (Stream<String> lines = Files.lines(path)) {
 
 ## 8. リソースクローズの重要性
 
-これ、試験で一番引っかかるポイントじゃね？
+これ、試験で一番引っかかるポイントではないだろうか
 
 ### なぜクローズが必要？
 
-以下のメソッドは内部で**ファイルハンドル**や**ディレクトリストリーム**を開くから、使い終わったら必ずクローズしないとリソースリークするんだよね。
+以下のメソッドは内部で**ファイルハンドル**や**ディレクトリストリーム**を開くから、使い終わったら必ずクローズしないとリソースリークするんである。
 
 - `Files.lines()`
 - `Files.list()`
@@ -707,4 +707,4 @@ lines.forEach(System.out::println);
 
 ---
 
-これで File Stream API の基礎は完璧だね！試験では特に**リソースクローズ**と**再帰の有無**が頻出だから、そこを重点的に押さえておこう。
+これで File Stream API の基礎は完璧である。試験では特に**リソースクローズ**と**再帰の有無**が頻出するため、そこを重点的に押さえておくこと。

@@ -1,6 +1,6 @@
 # Stream Sort 完全攻略ガイド
 
-Java Gold 試験で頻出の Stream のソート機能について、徹底的に解説するよ。
+Java Gold 試験で頻出の Stream のソート機能について、徹底的に解説する。
 
 ## 目次
 1. [Comparable vs Comparator](#comparable-vs-comparator)
@@ -21,7 +21,7 @@ Java Gold 試験で頻出の Stream のソート機能について、徹底的�
 
 - **自然順序（natural ordering）** を定義するインターフェース
 - クラス自身に `compareTo()` メソッドを実装する
-- 「このクラスはこう並べるのが標準だよ」って決める感じ
+- 「このクラスの標準的な並び順はこうだ」と決めるもの
 
 ```java
 public interface Comparable<T> {
@@ -187,7 +187,7 @@ words.stream()
 
 ## thenComparing でチェーン
 
-複数の条件でソートしたいときは `thenComparing()` をチェーンするんだよね。
+複数の条件でソートしたいときは `thenComparing()` をチェーンするんである。
 
 ### 基本的なチェーン
 
@@ -245,7 +245,7 @@ people.stream()
 
 ## reversed() の使い方
 
-逆順にするメソッド。でもちょっと癖があるから注意が必要だよね。
+逆順にするメソッド。でもちょっと癖があるから注意が必要である。
 
 ### 基本的な使い方
 

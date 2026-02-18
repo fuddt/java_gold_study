@@ -1,6 +1,6 @@
 # Java Platform Module System (JPMS) - Gold試験対策
 
-Java 9で導入されたモジュールシステムの完全ガイドだよ。Gold試験では頻出分野だから、しっかり押さえておこうね！
+Java 9で導入されたモジュールシステムの完全ガイドである。Gold試験では頻出分野だから、しっかり押さえておくこと！
 
 ## 目次
 1. [JPMSの全体像](#jpmsの全体像)
@@ -16,7 +16,7 @@ Java 9で導入されたモジュールシステムの完全ガイドだよ。Go
 ## JPMSの全体像
 
 ### モジュールシステムって何？
-Java 9から導入された、パッケージの上位概念だよね。パッケージをグループ化して、**強力なカプセル化**を実現する仕組みだ。
+Java 9から導入された、パッケージの上位概念である。パッケージをグループ化して、**強力なカプセル化**を実現する仕組みだ。
 
 ### なぜモジュールシステムが必要なの？
 従来のJavaの問題点：
@@ -44,7 +44,7 @@ module com.example.myapp {
 
 ## module-info.javaの各ディレクティブ
 
-モジュールの設定ファイル `module-info.java` はソースルート直下に配置するんだよね。
+モジュールの設定ファイル `module-info.java` はソースルート直下に配置するんである。
 
 ### 基本構文
 
@@ -54,13 +54,13 @@ module モジュール名 {
 }
 ```
 
-**重要**：モジュール名は慣習的に逆ドメイン形式（com.example.app）を使うけど、必須じゃないよ。
+**重要**：モジュール名は慣習的に逆ドメイン形式（com.example.app）を使うが、必須ではない。
 
 ---
 
 ### 1. requires - 依存モジュールの宣言
 
-他のモジュールに依存することを宣言するディレクティブだよ。
+他のモジュールに依存することを宣言するディレクティブである。
 
 #### 通常のrequires
 ```java
@@ -87,8 +87,8 @@ module com.example.app {
 ```
 
 **ポイント**：
-- `requires transitive` は「このモジュールを使う人も、このモジュールが必要だよ」という宣言
-- API内でjava.xmlのクラスを使ってるなら、transitive必須じゃね？
+- `requires transitive` は「このモジュールを使う人も、このモジュールが必要である」という宣言
+- API内でjava.xmlのクラスを使ってるなら、transitive必須ではないだろうか
 - 試験でよく出る！
 
 #### requires static - コンパイル時依存
@@ -100,8 +100,8 @@ module com.example.app {
 ```
 
 **ポイント**：
-- コンパイル時には必要だけど、実行時は任意（Optional dependency）
-- Lombokみたいなアノテーションプロセッサで使うよね
+- コンパイル時には必要だが、実行時は任意（Optional dependency）
+- Lombokのようなアノテーションプロセッサで使う
 - 実行時に存在しなくてもエラーにならない
 
 ---
@@ -153,7 +153,7 @@ exports com.example.api;  // ✅
 
 ### 3. opens - リフレクションアクセスの許可
 
-`exports` は public メンバーのアクセスのみだけど、`opens` は **private メンバーへのリフレクションアクセス** も許可するよ。
+`exports` は public メンバーのアクセスのみだが、`opens` は **private メンバーへのリフレクションアクセス** も許可する。
 
 #### 全モジュールにリフレクション許可
 
@@ -202,13 +202,13 @@ open module com.example.app {
 }
 ```
 
-**注意**：`open module` はリフレクションを許可するだけで、exports はしないよ！
+**注意**：`open module` はリフレクションを許可するだけで、exports はしない。
 
 ---
 
 ### 4. provides...with / uses - ServiceLoader
 
-プラグイン機構を実現するディレクティブだね。
+プラグイン機構を実現するディレクティブである。
 
 #### プロバイダ側（実装を提供）
 
@@ -265,7 +265,7 @@ for (PaymentService service : loader) {
 
 ## 移行戦略
 
-既存プロジェクトをモジュール化する2つの戦略があるよ。
+既存プロジェクトをモジュール化する2つの戦略がある。
 
 ### トップダウン移行（Top-Down Migration）
 
@@ -341,7 +341,7 @@ module com.example.app {
 
 ### 自動モジュール（Automatic Module）
 
-**module-info.java なし** の JAR を **モジュールパス** に配置すると自動モジュールになるよ。
+**module-info.java なし** の JAR を **モジュールパス** に配置すると自動モジュールになる。
 
 ```bash
 # mylib.jar（module-info.javaなし）をモジュールパスに配置
@@ -374,7 +374,7 @@ module com.example.app {
 
 ### 無名モジュール（Unnamed Module）
 
-**クラスパス** 上のすべてのクラス/JAR は **無名モジュール** に属するよ。
+**クラスパス** 上のすべてのクラス/JAR は **無名モジュール** に属する。
 
 ```bash
 # クラスパスに配置
@@ -425,7 +425,7 @@ module com.example.app {
 
 ### ServiceLoaderとは
 
-プラグイン機構を実現する Java 標準の API だよ。インターフェースと実装を疎結合にして、実行時に動的にロードできるんだよね。
+プラグイン機構を実現する Java 標準の API である。インターフェースと実装を疎結合にして、実行時に動的にロードできるんである。
 
 ### 使用例：データベースドライバ
 
@@ -604,7 +604,7 @@ loader.stream()
 
 ## jdepsツールの使い方
 
-`jdeps` は **依存関係分析ツール** で、モジュール移行時に超重要だよ！
+`jdeps` は **依存関係分析ツール** で、モジュール移行時に超重要である！
 
 ### 基本的な使い方
 
@@ -635,7 +635,7 @@ MyApp.jar -> java.sql
 MyApp.jar -> java.xml
 ```
 
-**モジュール間の依存だけ** 見たい時に便利だよね。
+**モジュール間の依存だけ** 見たい時に便利である。
 
 ---
 
@@ -677,7 +677,7 @@ module MyApp {
 }
 ```
 
-**そのまま使わないこと！** 必要ない exports も含まれることがあるよ。
+**そのまま使わないこと！** 必要ない exports も含まれることがある。
 
 ---
 
@@ -697,7 +697,7 @@ Suggested Replacement:
    sun.misc.BASE64Encoder -> Use java.util.Base64
 ```
 
-**移行前に必ずチェック！** 内部API使ってたら公開APIに置き換える必要があるよ。
+**移行前に必ずチェック！** 内部API使ってたら公開APIに置き換える必要がある。
 
 ---
 
@@ -743,7 +743,7 @@ $ jdeps -dotoutput ./dot-output MyApp.jar
 $ dot -Tpng ./dot-output/summary.dot -o dependencies.png
 ```
 
-**ビジュアルで依存関係** を確認できるよ。
+**ビジュアルで依存関係** を確認できる。
 
 ---
 
@@ -958,7 +958,7 @@ ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
 // ❌ 何もロードされない
 ```
 
-**正解**：`uses` を **明示的に宣言** しないと ServiceLoader はロードできないよ。
+**正解**：`uses` を **明示的に宣言** しないと ServiceLoader はロードできない。
 
 ---
 
@@ -1281,5 +1281,5 @@ $ java --module-path mods -m com.example.app/com.example.app.Main
 
 ---
 
-これでJava Goldのモジュールシステムは完璧だよね！
-試験頑張って！
+これでJava Goldのモジュールシステムは完璧である！
+試験に臨むこと。

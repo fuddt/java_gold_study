@@ -2,7 +2,7 @@
 
 ## Optionalとは？
 
-`Optional<T>`は、**nullかもしれない値を安全に扱うためのコンテナクラス**だよね。Java 8で導入された。
+`Optional<T>`は、**nullかもしれない値を安全に扱うためのコンテナクラス**である。Java 8で導入された。
 
 ### なぜOptionalを使うのか？
 
@@ -97,7 +97,7 @@ String value = opt.orElseThrow(() -> new IllegalStateException("値がない"));
 
 ## 超重要！orElse vs orElseGet の違い（試験頻出！）
 
-これは**試験で絶対に出る**から覚えておけ！
+これは**試験で絶対に出る**から覚えておくこと。
 
 ### orElse(T other)
 ```java

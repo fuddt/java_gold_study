@@ -2,7 +2,7 @@
 
 ## 1. ジェネリクスの基本概念
 
-ジェネリクスは型の安全性を提供する仕組みだよね。コンパイル時に型チェックができるから、実行時のClassCastExceptionを防げるんだ。
+ジェネリクスは型の安全性を提供する仕組みである。コンパイル時に型チェックができるから、実行時のClassCastExceptionを防げるんだ。
 
 ### 基本的な定義
 
@@ -27,7 +27,7 @@ Box<Integer> intBox = new Box<>(42);
 
 ### ダイアモンド演算子（<>）
 
-Java 7以降、右辺の型パラメータは省略できるんだ。コンパイラが型推論してくれるからね。
+Java 7以降、右辺の型パラメータは省略できるんだ。コンパイラが型推論してくれる。
 
 ```java
 // Java 7以降
@@ -40,13 +40,13 @@ List<String> list = new ArrayList<String>();  // ◯ でも冗長
 List list = new ArrayList();  // △ 警告が出る
 ```
 
-**試験ポイント**: raw typeは非推奨だけど、コンパイルは通るよ。でも警告が出る。
+**試験ポイント**: raw typeは非推奨だが、コンパイルは通るよ。でも警告が出る。
 
 ---
 
 ## 2. ワイルドカード（?）の使い分け
 
-ワイルドカードは3種類あって、それぞれ使い道が違うんだよね。
+ワイルドカードは3種類あって、それぞれ使い道が違うんである。
 
 ### 2.1 ? extends T（上限境界ワイルドカード）
 
@@ -131,7 +131,7 @@ public void printListSize(List<?> list) {
 
 **PECS = Producer Extends, Consumer Super**
 
-これはJava Goldで頻出だから、しっかり覚えておこうぜ。
+これはJava Goldで頻出だから、しっかり覚えておくことぜ。
 
 ### 原則の意味
 
@@ -177,7 +177,7 @@ public void process(List<? super Integer> list) {
 
 ## 4. 型消去（Type Erasure）とその影響
 
-Javaのジェネリクスは**実行時には型情報が消える**んだよね。これを型消去って呼ぶ。
+Javaのジェネリクスは**実行時には型情報が消える**んである。これを型消去って呼ぶ。
 
 ### 型消去の仕組み
 
@@ -355,7 +355,7 @@ System.out.println(treeMap);  // {A=1, B=2, C=3} - キーでソート
 
 ## 6. TreeSet/TreeMapにはComparableが必要
 
-これ、試験でよく出るから要注意だよ！
+これ、試験でよく出るから要注意である！
 
 ```java
 // NG例
@@ -424,7 +424,7 @@ while (iterator.hasNext()) {
 }
 ```
 
-**試験ポイント**: 拡張forループ中に`list.remove()`を呼ぶと`ConcurrentModificationException`が発生するよ！Iteratorを使おう。
+**試験ポイント**: 拡張forループ中に`list.remove()`を呼ぶと`ConcurrentModificationException`が発生する！Iteratorを使おう。
 
 ---
 
@@ -589,4 +589,4 @@ map.entrySet()                // エントリのSet
 4. ArrayDequeとTreeMapは**nullを許可しない**
 5. 拡張forループ中の削除は`ConcurrentModificationException`
 
-これでジェネリクスとコレクションはバッチリだよね！
+これでジェネリクスとコレクションはバッチリである！

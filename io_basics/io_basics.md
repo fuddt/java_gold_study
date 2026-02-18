@@ -15,7 +15,7 @@
 
 ## バイトストリーム vs 文字ストリーム
 
-この違い、超重要だよね。まず基本から押さえていこう。
+この違いは非常に重要である。まず基本から押さえること。
 
 ### バイトストリーム（InputStream/OutputStream）
 - **何を扱う？** バイナリデータ（生のバイト列）
@@ -60,13 +60,13 @@ try (FileReader reader = new FileReader("text.txt")) {
 | JSON・XML | Reader/Writer（テキストだから） |
 | バイナリ全般 | InputStream/OutputStream |
 
-**覚え方**: テキストなら文字ストリーム、それ以外はバイトストリームって感じだね。
+**覚え方**: テキストなら文字ストリーム、それ以外はバイトストリームである。
 
 ---
 
 ## InputStream/OutputStream系
 
-バイトストリームの主要クラスをまとめるよ。
+バイトストリームの主要クラスをまとめる。
 
 ### 主要クラス一覧
 
@@ -129,7 +129,7 @@ try (FileInputStream fis = new FileInputStream("data.bin")) {
 
 ## Reader/Writer系
 
-文字ストリームの主要クラスだよ。
+文字ストリームの主要クラスである。
 
 ### 主要クラス一覧
 
@@ -191,7 +191,7 @@ try (FileReader reader = new FileReader("text.txt")) {
 
 ## Buffered系（バッファリング）
 
-パフォーマンスめちゃくちゃ上がるから、実務では絶対使うべきだよね。
+パフォーマンスが非常に向上するため、実務では必ず使うべきである。
 
 ### なぜバッファリング？
 
@@ -222,7 +222,7 @@ try (BufferedReader reader = new BufferedReader(new FileReader("large.txt"))) {
 String readLine()  // 1行読む（改行文字は含まない）、終端でnull
 ```
 
-**超重要**: `readLine()`は終端で`null`を返す（-1じゃないよ！）
+**超重要**: `readLine()`は終端で`null`を返す（-1ではない）
 
 ```java
 try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
@@ -250,7 +250,7 @@ try (BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"))) {
 
 ### バッファサイズ
 
-デフォルトは8192文字/バイトだけど、変更もできるよ。
+デフォルトは8192文字/バイトであるが、変更も可能である。
 
 ```java
 // カスタムバッファサイズ
@@ -261,7 +261,7 @@ BufferedReader reader = new BufferedReader(new FileReader("file.txt"), 16384);
 
 ## InputStreamReader/OutputStreamWriter（ブリッジ）
 
-バイトストリームと文字ストリームの橋渡し役だよ。
+バイトストリームと文字ストリームの橋渡し役である。
 
 ### 何のため？
 
@@ -357,7 +357,7 @@ System.out instanceof PrintStream // true
 System.err instanceof PrintStream // true
 ```
 
-**違い**: 出力先が別だから、リダイレクトで分けられるよ。
+**違い**: 出力先が別であるため、リダイレクトで分けられる。
 ```bash
 java Main > out.txt 2> err.txt
 # out.txt: 標準出力のみ
@@ -382,13 +382,13 @@ if (console != null) {
 }
 ```
 
-**注意**: IDEから実行するとnullになることが多いよ。ターミナルから実行しよう。
+**注意**: IDEから実行するとnullになることが多い。ターミナルから実行すること。
 
 ---
 
 ## read()の戻り値
 
-これ、試験で絶対出るから超重要！
+これは試験で必ず出るため超重要である。
 
 ### InputStream.read() / Reader.read()
 
@@ -439,7 +439,7 @@ while ((b = fis.read()) != -1) {
 String readLine()  // 1行読む、終端でnull
 ```
 
-**超重要**: `readLine()`は終端で`null`を返す（-1じゃない！）
+**超重要**: `readLine()`は終端で`null`を返す（-1ではない）
 
 ```java
 try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
@@ -464,11 +464,11 @@ try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
 
 ## flush()の重要性
 
-`flush()`、忘れたらデータが消えるかもよ！
+`flush()`を忘れるとデータが消える可能性がある。
 
 ### なぜflush()が必要？
 
-ストリームは内部にバッファを持ってる。`write()`してもすぐにファイルに書かれるわけじゃない。
+ストリームは内部にバッファを持っている。`write()`してもすぐにファイルに書かれるわけではない。
 
 ```
 write() → バッファに溜める → （flush()）→ 実際にファイルへ書く
@@ -508,7 +508,7 @@ writer.write("重要なデータ");
 
 ### PrintWriter / PrintStreamの注意
 
-`PrintWriter`と`PrintStream`は自動フラッシュ機能があるよ。
+`PrintWriter`と`PrintStream`は自動フラッシュ機能がある。
 
 ```java
 // autoFlush=true（デフォルトは状況による）
@@ -520,7 +520,7 @@ pw.println("これは自動でflush()される");
 
 ## 試験ポイント・引っかけ問題
 
-Java Gold試験で狙われやすいポイントをまとめるよ！
+Java Gold試験で狙われやすいポイントをまとめる。
 
 ### 1. read()の戻り値
 
@@ -566,7 +566,7 @@ InputStreamReader isr = new InputStreamReader(
     new FileInputStream("file.txt"), "UTF-8"); // ✅
 ```
 
-**注意**: Java 11以降は`FileReader(File, Charset)`が追加されたよ。
+**注意**: Java 11以降は`FileReader(File, Charset)`が追加された。
 
 ### 5. BufferedWriterのnewLine()
 
@@ -613,7 +613,7 @@ byte[] buffer = new byte[available];
 fis.read(buffer); // ❌ 必ずしも全部読めるとは限らない！
 ```
 
-**注意**: `available()`は「ブロックせずに読める最小バイト数」であって、ファイル全体のサイズじゃないよ。
+**注意**: `available()`は「ブロックせずに読める最小バイト数」であって、ファイル全体のサイズではない。
 
 ### 9. 継承関係
 
@@ -750,4 +750,4 @@ try (FileReader reader = new FileReader("file.txt")) {
 - [ ] try-with-resourcesの文法を理解
 - [ ] 継承関係（`FileReader` extends `InputStreamReader`など）を理解
 
-これでI/O基礎は完璧じゃね？試験頑張ってね！
+これでI/O基礎は完璧である。試験に臨むこと。

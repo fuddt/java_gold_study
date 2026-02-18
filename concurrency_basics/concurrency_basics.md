@@ -91,7 +91,7 @@ ExecutorService executor = Executors.newCachedThreadPool();
 ## 3. Futureの使い方
 
 ### Future<V>インターフェース
-非同期タスクの結果を表すインターフェースだよね。
+非同期タスクの結果を表すインターフェースである。
 
 ```java
 Future<Integer> future = executor.submit(callable);
@@ -484,4 +484,4 @@ Integer result = future.get(); // 例外が発生する？
 - **get()はブロッキング！**
 - **ThreadはCallableを受け付けない！**
 
-試験頑張ってね！
+試験頑張ろう！

@@ -21,7 +21,7 @@ Java 11のGold試験で超頻出の「Bi系（2つの引数を取る）関数型
 
 ### プリミティブ特殊化の命名規則
 
-プリミティブ版は `Int`, `Long`, `Double` の3種類があるよ。命名規則を覚えればパターンで推測できる！
+プリミティブ版は `Int`, `Long`, `Double` の3種類がある。命名規則を覚えればパターンで推測できる！
 
 #### パターン1: 引数がプリミティブ
 - `IntConsumer` → `void accept(int value)`
@@ -60,7 +60,7 @@ System.out.println(repeat.apply("Hi", 3)); // HiHiHi
 
 ### andThenメソッド
 
-BiFunctionは `andThen()` で連鎖できるよ。ただし、**composeはない**から注意！
+BiFunctionは `andThen()` で連鎖できる。ただし、**composeはない**から注意！
 
 ```java
 BiFunction<String, String, String> concat = (s1, s2) -> s1 + s2;
@@ -79,7 +79,7 @@ System.out.println(concatAndUpper.apply("hello", "world")); // HELLOWORLD
 
 ### Map.forEachでの典型的な使用例
 
-これが一番よく出る使い方だよね！
+これが一番よく出る使い方である！
 
 ```java
 Map<String, Integer> scores = Map.of("Alice", 85, "Bob", 92);
@@ -232,7 +232,7 @@ ToIntBiFunction<String, String> tibf = (s1, s2) -> s1.length() + s2.length();
 ObjIntConsumer<String> oic = (str, i) -> System.out.println(str + ": " + i);
 ```
 
-Long系とDouble系も同じパターンだよ！
+Long系とDouble系も同じパターンである！
 
 ### 試験で引っかかりやすいポイント
 
@@ -264,7 +264,7 @@ Long系とDouble系も同じパターンだよ！
 
 ## Map操作との組み合わせ
 
-Mapの便利メソッドは、ほとんどがBi系関数型インターフェースを使ってるんだよね。
+Mapの便利メソッドは、ほとんどがBi系関数型インターフェースを使ってるんである。
 
 ### Map.forEach() - BiConsumer<K, V>
 
@@ -328,7 +328,7 @@ map.computeIfAbsent("count", key -> 200);
 
 ### Map.merge() - BiFunction<V, V, V>
 
-値をマージする。**引数は (oldValue, newValue) の順**だよ！
+値をマージする。**引数は (oldValue, newValue) の順**である！
 
 ```java
 Map<String, Integer> map = new HashMap<>(Map.of("count", 5));

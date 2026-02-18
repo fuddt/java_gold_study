@@ -2,7 +2,7 @@
 
 ## Collectorsの全体像
 
-Collectorsクラスは、Streamの終端操作`collect()`で使うコレクターを提供する工場クラスだよね。ストリームの要素を集めて、リスト、マップ、文字列、統計情報なんかに変換できるわけ。
+Collectorsクラスは、Streamの終端操作`collect()`で使うコレクターを提供する工場クラスである。ストリームの要素を集めて、リスト、マップ、文字列、統計情報なんかに変換できるわけ。
 
 ### 主要なCollectorsメソッド
 
@@ -35,7 +35,7 @@ Collectorsクラスは、Streamの終端操作`collect()`で使うコレクタ�
 
 ## groupingBy vs partitioningBy の違い
 
-これ試験でめっちゃ出るからしっかり押さえとこうぜ！
+これ試験で非常に出るからしっかり押さえとこうぜ！
 
 ### groupingBy()
 
@@ -73,7 +73,7 @@ Map<Boolean, List<Person>> result = people.stream()
     .filter(p -> p.getAge() > 100)  // 空のストリーム
     .collect(Collectors.partitioningBy(p -> p.getAge() >= 30));
 
-// 結果: {false=[], true=[]}  ← 両方空リストだけど存在する
+// 結果: {false=[], true=[]}  ← 両方空リストだが存在する
 ```
 
 **2. groupingByは実際に存在するキーのみ**
@@ -122,7 +122,7 @@ Map<Integer, String> ageToName = people.stream()
 // → IllegalStateException: Duplicate key
 ```
 
-**超重要**: merge関数を指定しないと、キー重複時に`IllegalStateException`が投げられるんだよね。これ知らないとバグる。
+**超重要**: merge関数を指定しないと、キー重複時に`IllegalStateException`が投げられるんである。これ知らないとバグる。
 
 ### merge関数で重複を解決
 
@@ -466,7 +466,7 @@ Map<Integer, String> map = people.stream()
 
 ## まとめ
 
-Stream APIのCollectorsは、データの集約・変換の基本だよね。特に以下のポイントは試験でも実務でも超重要じゃね？
+Stream APIのCollectorsは、データの集約・変換の基本である。特に以下のポイントは試験でも実務でも超重要ではないだろうか
 
 1. **toMapはキー重複時に例外** → merge関数必須
 2. **groupingByは0個以上のキー、partitioningByは必ず2個** → 使い分けが大事

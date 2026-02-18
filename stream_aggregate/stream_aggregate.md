@@ -2,7 +2,7 @@
 
 ## 概要
 
-Streamの集約操作は、ストリームの要素を処理して単一の結果を生成する**終端操作**だよね。集約操作には色々あるけど、Java Goldで重要なのは以下のやつら。
+Streamの集約操作は、ストリームの要素を処理して単一の結果を生成する**終端操作**である。集約操作には色々あるけど、Java Goldで重要なのは以下のやつら。
 
 - `count()` - 要素数
 - `max()` / `min()` - 最大/最小
@@ -33,7 +33,7 @@ long count = list.stream()
 
 ### 2. max() / min() - 最大/最小値
 
-`Stream<T>`の`max()`と`min()`は**Comparatorが必須**だよね。戻り値は`Optional<T>`。
+`Stream<T>`の`max()`と`min()`は**Comparatorが必須**である。戻り値は`Optional<T>`。
 
 ```java
 List<Integer> numbers = Arrays.asList(5, 2, 8, 1, 9);
@@ -65,7 +65,7 @@ Optional<Integer> max = numbers.stream()
 
 ### プリミティブストリームとは？
 
-`Stream<Integer>`みたいなボクシング型のストリームとは別に、プリミティブ型専用のストリームがあるんだよね。
+`Stream<Integer>`みたいなボクシング型のストリームとは別に、プリミティブ型専用のストリームがあるんである。
 
 - `IntStream` - int専用
 - `LongStream` - long専用
@@ -97,7 +97,7 @@ DoubleStream.of(1.5, 2.5, 3.5)
 
 ### sum() と average()
 
-プリミティブストリームには`sum()`と`average()`メソッドがあるよ。
+プリミティブストリームには`sum()`と`average()`メソッドがある。
 
 ```java
 IntStream scores = IntStream.of(80, 90, 75, 85, 95);
@@ -134,7 +134,7 @@ double value = avg.getAsDouble(); // または avg.orElse(0.0)
 
 ### max() / min() on プリミティブストリーム
 
-プリミティブストリームの`max()`/`min()`は**Comparatorが不要**だよ。
+プリミティブストリームの`max()`/`min()`は**Comparatorが不要**である。
 
 ```java
 IntStream stream = IntStream.of(5, 2, 8, 1, 9);
@@ -160,7 +160,7 @@ OptionalInt max2 = s2.max(); // Comparator不要
 
 ## mapToInt() / mapToLong() / mapToDouble()
 
-`Stream<T>`をプリミティブストリームに変換するメソッド。これ超重要だよね。
+`Stream<T>`をプリミティブストリームに変換するメソッド。これ超重要である。
 
 ```java
 List<String> words = Arrays.asList("Java", "Stream", "API");
@@ -194,7 +194,7 @@ int sum = Stream.of(1, 2, 3)
 
 ### boxed() - プリミティブストリームからStream<T>へ
 
-逆方向の変換も可能だよ。
+逆方向の変換も可能である。
 
 ```java
 IntStream intStream = IntStream.of(1, 2, 3, 4, 5);
@@ -206,7 +206,7 @@ List<Integer> list = boxed.collect(Collectors.toList());
 
 ## summaryStatistics() - 統計情報を一度に取得
 
-プリミティブストリームには`summaryStatistics()`という便利メソッドがあるんだよね。これで`count`, `sum`, `min`, `average`, `max`を一度に取得できる。
+プリミティブストリームには`summaryStatistics()`という便利メソッドがあるんである。これで`count`, `sum`, `min`, `average`, `max`を一度に取得できる。
 
 ```java
 IntStream scores = IntStream.of(80, 90, 75, 85, 95, 70);
@@ -230,7 +230,7 @@ System.out.println(stats.getMax());     // 95
 
 ## reduce() - 汎用的な集約操作
 
-`reduce()`は最も汎用的な集約操作だよね。自分で集約ロジックを定義できる。
+`reduce()`は最も汎用的な集約操作である。自分で集約ロジックを定義できる。
 
 ### 3つのオーバーロード
 
@@ -328,7 +328,7 @@ Optional<Integer> min = numbers.stream()
 
 ## Stream<Integer> vs IntStream の違い
 
-これマジで重要な試験ポイントだよね。
+これマジで重要な試験ポイントである。
 
 ### Stream<Integer> - ボクシング型のストリーム
 
@@ -512,4 +512,4 @@ Stream.of(1,2,3).max(Comparator.naturalOrder())  // Comparator指定
 long count = list.stream().count()  // long型で受け取る
 ```
 
-これで Stream の集約操作はバッチリだね！試験頑張ってね！
+これで Stream の集約操作はバッチリだね！試験頑張ろう！

@@ -16,7 +16,7 @@
 ## synchronized の基本
 
 ### 概要
-`synchronized`はJavaでスレッドセーフな処理を実装する最も基本的な方法だよね。複数のスレッドが同時に同じリソースにアクセスするのを防ぐために使うんだ。
+`synchronized`はJavaでスレッドセーフな処理を実装する最も基本的な方法である。複数のスレッドが同時に同じリソースにアクセスするのを防ぐために使うんだ。
 
 ### メソッドレベルの synchronized
 
@@ -98,7 +98,7 @@ public class MultiLockExample {
 ## volatile キーワード
 
 ### 概要
-`volatile`はメモリの可視性を保証するキーワードだよ。synchronizedみたいにロックはしないけど、他のスレッドからの変更が即座に見えるようにしてくれるんだ。
+`volatile`はメモリの可視性を保証するキーワードである。synchronizedみたいにロックはしないけど、他のスレッドからの変更が即座に見えるようにしてくれるんだ。
 
 ### 使い方
 
@@ -120,7 +120,7 @@ public class VolatileFlag {
 
 ### volatileが必要な理由
 
-CPUキャッシュのせいで、スレッドAが変更した値をスレッドBが見れないことがあるんだよね。volatileを付けると：
+CPUキャッシュのせいで、スレッドAが変更した値をスレッドBが見れないことがあるんである。volatileを付けると：
 
 1. 変数の読み書きが必ずメインメモリから行われる
 2. CPUキャッシュによる不整合を防ぐ
@@ -172,7 +172,7 @@ public void increment() {
 ## Atomic クラス
 
 ### 概要
-Atomicクラスはロックを使わずにスレッドセーフな操作を提供するクラス群だよ。CAS（Compare-And-Swap）という仕組みを使ってるんだ。
+Atomicクラスはロックを使わずにスレッドセーフな操作を提供するクラス群である。CAS（Compare-And-Swap）という仕組みを使ってるんだ。
 
 ### 主要なAtomicクラス
 
@@ -269,7 +269,7 @@ public synchronized void transferMoney(Account from, Account to, int amount) {
 ## 並行コレクション
 
 ### 概要
-通常のコレクション（ArrayList、HashMapなど）はスレッドセーフじゃないんだよね。並行コレクションは複数スレッドから安全にアクセスできるように設計されてるんだ。
+通常のコレクション（ArrayList、HashMapなど）はスレッドセーフじゃないんである。並行コレクションは複数スレッドから安全にアクセスできるように設計されてるんだ。
 
 ### ConcurrentHashMap
 
@@ -383,7 +383,7 @@ for (String s : concurrentList) {  // ロック不要
 ## CyclicBarrier
 
 ### 概要
-CyclicBarrierは複数のスレッドを同期ポイントで待ち合わせるための仕組みだよ。全スレッドがバリアに到達するまで待つんだ。
+CyclicBarrierは複数のスレッドを同期ポイントで待ち合わせるための仕組みである。全スレッドがバリアに到達するまで待つんだ。
 
 ### 基本的な使い方
 
@@ -483,7 +483,7 @@ System.out.println("全タスク完了");
 ## BlockingQueue
 
 ### 概要
-BlockingQueueは生産者-消費者パターンを実装するための並行キューだよ。キューが満杯/空のときに自動的にブロックしてくれるんだ。
+BlockingQueueは生産者-消費者パターンを実装するための並行キューである。キューが満杯/空のときに自動的にブロックしてくれるんだ。
 
 ### 主要な実装クラス
 
@@ -603,7 +603,7 @@ public class ProducerConsumerExample {
 ## ReentrantLock
 
 ### 概要
-ReentrantLockはsynchronizedより柔軟なロック機構だよ。tryLock、タイムアウト、割り込み可能なロックなど、高度な機能があるんだ。
+ReentrantLockはsynchronizedより柔軟なロック機構である。tryLock、タイムアウト、割り込み可能なロックなど、高度な機能があるんだ。
 
 ### 基本的な使い方
 
@@ -623,7 +623,7 @@ public class LockExample {
 }
 ```
 
-**重要:** finallyブロックでunlock()を呼ぶのは必須だよ。例外が発生してもロックを解放しないとデッドロックになっちゃうからね。
+**重要:** finallyブロックでunlock()を呼ぶのは必須である。例外が発生してもロックを解放しないとデッドロックになっちゃう。
 
 ### tryLock - ノンブロッキング取得
 
@@ -796,7 +796,7 @@ public class ReadWriteLockExample {
 ### デッドロック（Deadlock）
 
 #### 概要
-デッドロックは複数のスレッドがお互いにロックを待ち続ける状態だよ。誰も進めなくなっちゃうんだ。
+デッドロックは複数のスレッドがお互いにロックを待ち続ける状態である。誰も進めなくなっちゃうんだ。
 
 #### 典型的なデッドロックの例
 
@@ -920,10 +920,10 @@ public boolean acquireLocks(Lock... locks) {
 ### ライブロック（Livelock）
 
 #### 概要
-ライブロックはスレッドが互いに譲り合って結果的に進まない状態だよ。デッドロックと違って、スレッドはアクティブに動いてるんだけどね。
+ライブロックはスレッドが互いに譲り合って結果的に進まない状態である。デッドロックと違って、スレッドはアクティブに動いてるんだが。
 
 #### 例え話
-廊下で向かい合った2人が「どうぞどうぞ」とお互いに譲り合って、結局誰も進めない状態じゃね？
+廊下で向かい合った2人が「どうぞどうぞ」とお互いに譲り合って、結局誰も進めない状態ではないだろうか
 
 #### コード例
 
@@ -987,7 +987,7 @@ if (this.priority > other.priority) {
 
 ### スレッドの飢餓（Starvation）
 
-優先度が低いスレッドがずっと実行されない状態だよ。
+優先度が低いスレッドがずっと実行されない状態である。
 
 ```java
 // 公平なロックで回避
@@ -1018,7 +1018,7 @@ public class Counter {
 }
 ```
 
-**答え:** スレッドセーフじゃない！getCount()もsynchronizedが必要だよ。
+**答え:** スレッドセーフじゃない！getCount()もsynchronizedが必要である。
 
 **正解:**
 ```java
@@ -1049,7 +1049,7 @@ public void method1() {
 }
 ```
 
-**答え:** 毎回新しいオブジェクトを作ってるからロックにならない！同じオブジェクトを使わないとダメだよ。
+**答え:** 毎回新しいオブジェクトを作ってるからロックにならない！同じオブジェクトを使わないとダメである。
 
 ### 2. volatile関連
 
@@ -1063,7 +1063,7 @@ public void increment() {
 }
 ```
 
-**答え:** スレッドセーフじゃない！`count++`は3つの操作（読み取り、加算、書き込み）だから、synchronizedかAtomicIntegerが必要だよ。
+**答え:** スレッドセーフじゃない！`count++`は3つの操作（読み取り、加算、書き込み）だから、synchronizedかAtomicIntegerが必要である。
 
 #### Q5: volatileが必要な場面は？
 
@@ -1115,7 +1115,7 @@ map.put(null, "value");  // どうなる？
 map.put("key", null);    // どうなる？
 ```
 
-**答え:** どっちも`NullPointerException`が発生するよ！ConcurrentHashMapはnullキー・null値を許可しないんだ。
+**答え:** どっちも`NullPointerException`が発生する！ConcurrentHashMapはnullキー・null値を許可しないんだ。
 
 #### Q9: CopyOnWriteArrayListの特徴は？
 
@@ -1128,7 +1128,7 @@ for (String s : list) {
 }
 ```
 
-**答え:** 安全だよ！イテレータ作成時のスナップショットを使うから`ConcurrentModificationException`は発生しないんだ。
+**答え:** 安全である！イテレータ作成時のスナップショットを使うから`ConcurrentModificationException`は発生しないんだ。
 
 ### 5. ReentrantLock関連
 
@@ -1140,7 +1140,7 @@ doSomething();
 lock.unlock();  // 例外が発生したら？
 ```
 
-**答え:** 例外が発生したらunlock()が呼ばれない。デッドロックの原因になるよ。必ずfinallyブロックで呼ぶべきだよね。
+**答え:** 例外が発生したらunlock()が呼ばれない。デッドロックの原因になる。必ずfinallyブロックで呼ぶべきである。
 
 **正解:**
 ```java
@@ -1218,7 +1218,7 @@ synchronized (lockB) {
 }
 ```
 
-**答え:** デッドロックが発生する可能性が高いよ！ロックの取得順序が逆だからね。
+**答え:** デッドロックが発生する可能性が高いよ！ロックの取得順序が逆だ。
 
 **回避策:**
 ```java
@@ -1342,4 +1342,4 @@ public void method() {
 - [ ] デッドロックの回避方法を説明できる？
 - [ ] CyclicBarrierとCountDownLatchの違いを理解してる？
 
-頑張ってね！
+頑張ろう！

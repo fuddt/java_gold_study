@@ -2,31 +2,31 @@
 
 ## 概要
 
-NIO.2（New I/O 2）はJava 7で導入されたファイルI/O APIだよ。従来の`java.io.File`クラスより柔軟で強力なんだよね。試験では特に`Path`と`Files`クラスの使い方がめっちゃ出るから要注意！
+NIO.2（New I/O 2）はJava 7で導入されたファイルI/O APIである。従来の`java.io.File`クラスより柔軟で強力である。試験では特に`Path`と`Files`クラスの使い方が非常に頻出するため要注意である。
 
 ## Path クラスの基本
 
 ### Path の作成方法
 
-Path オブジェクトを作る方法は主に2つあるよ。
+Path オブジェクトを作る方法は主に2つある。
 
 ```java
 // 方法1: Path.of() - Java 11以降の推奨方法
 Path path1 = Path.of("file.txt");
 Path path2 = Path.of("dir", "subdir", "file.txt");  // dir/subdir/file.txt
 
-// 方法2: Paths.get() - 古い方法だけど試験に出る
+// 方法2: Paths.get() - 古い方法だが試験に出る
 Path path3 = Paths.get("file.txt");
 Path path4 = Paths.get("dir", "subdir", "file.txt");
 ```
 
-**試験ポイント**: `Path.of()`と`Paths.get()`は機能的に同じ。新しいコードでは`Path.of()`を使うべきだけど、試験では両方出るからね！
+**試験ポイント**: `Path.of()`と`Paths.get()`は機能的に同じである。新しいコードでは`Path.of()`を使うべきであるが、試験では両方出る。
 
 ### Path の主要メソッド
 
 #### getFileName() - ファイル名取得
 
-パスの最後の要素を返すよ。
+パスの最後の要素を返す。
 
 ```java
 Path path = Path.of("/home/user/file.txt");
@@ -38,7 +38,7 @@ System.out.println(dir.getFileName());  // user
 
 #### getParent() - 親ディレクトリ取得
 
-親ディレクトリのPathを返す。親がない場合は`null`だよ。
+親ディレクトリのPathを返す。親がない場合は`null`である。
 
 ```java
 Path path = Path.of("/home/user/file.txt");
@@ -60,11 +60,11 @@ Path relative = Path.of("dir/file.txt");
 System.out.println(relative.getRoot());  // null
 ```
 
-**試験の引っかけ**: Windowsでは`C:\`みたいなドライブレターがrootになるよ。
+**試験の引っかけ**: Windowsでは`C:\`のようなドライブレターがrootになる。
 
 #### getNameCount() と getName(int index)
 
-パスの要素数を取得したり、特定インデックスの要素を取得したりするよ。
+パスの要素数を取得したり、特定インデックスの要素を取得したりする。
 
 ```java
 Path path = Path.of("/home/user/docs/file.txt");
@@ -88,7 +88,7 @@ path.getName(4);  // 例外！
 
 #### subpath(int beginIndex, int endIndex)
 
-パスの一部を切り出すよ。`String.substring()`みたいな感じだね。
+パスの一部を切り出す。`String.substring()`のような動作である。
 
 ```java
 Path path = Path.of("/home/user/docs/file.txt");
@@ -105,7 +105,7 @@ System.out.println(path.subpath(2, 4));  // docs/file.txt
 
 ## resolve() - 超重要！
 
-`resolve()`はパスを結合するメソッドだけど、試験で絶対出るから完璧に理解しとこう！
+`resolve()`はパスを結合するメソッドだが、試験で絶対出るから完璧に理解しておくこと！
 
 ### 基本的な使い方
 
@@ -119,7 +119,7 @@ System.out.println(result);  // /home/user/docs/file.txt
 
 ### 超重要な挙動：引数が絶対パスの場合
 
-**これが試験に絶対出る！** 引数が絶対パスの場合、引数がそのまま返るんだよ。
+**これが試験に絶対出る！** 引数が絶対パスの場合、引数がそのまま返るんである。
 
 ```java
 Path base = Path.of("/home/user");
@@ -136,7 +136,7 @@ System.out.println(result);  // /tmp/file.txt
 Path p1 = Path.of("/data");
 Path p2 = Path.of("/backup/file.txt");
 Path result = p1.resolve(p2);
-// 答え: /backup/file.txt（/data/backup/file.txtじゃないよ！）
+// 答え: /backup/file.txt（/data/backup/file.txtではない）
 ```
 
 ### 空文字列の場合
@@ -151,7 +151,7 @@ System.out.println(result);  // /home/user（baseがそのまま返る）
 
 ## relativize() - これも超重要！
 
-2つのパス間の相対パスを計算するメソッドだよ。
+2つのパス間の相対パスを計算するメソッドである。
 
 ### 基本的な使い方
 
@@ -170,7 +170,7 @@ System.out.println(relative2);  // ../../docs
 
 ### 超重要な制約：両方とも同じ種類のパスが必要
 
-**試験に絶対出る！** 絶対パスと相対パスを混在させると`IllegalArgumentException`が発生するよ。
+**試験に絶対出る！** 絶対パスと相対パスを混在させると`IllegalArgumentException`が発生する。
 
 ```java
 Path absolute = Path.of("/home/user/file.txt");
@@ -197,7 +197,7 @@ System.out.println(relative);  // ""（空のパス）
 
 ## normalize() - . と .. の解決
 
-`normalize()`は論理的にパスを正規化するメソッドだよ。`.`（カレントディレクトリ）と`..`（親ディレクトリ）を解決するんだ。
+`normalize()`は論理的にパスを正規化するメソッドである。`.`（カレントディレクトリ）と`..`（親ディレクトリ）を解決する。
 
 ```java
 Path path1 = Path.of("/home/user/./docs");
@@ -222,15 +222,15 @@ Path normalized = Path.of("/fake/../real/./file.txt").normalize();
 System.out.println(normalized);  // /real/file.txt
 ```
 
-**試験の引っかけ**: `normalize()`はファイルシステムを見ないから、存在しないパスでも処理できる。`toRealPath()`と混同しないように！
+**試験の引っかけ**: `normalize()`はファイルシステムを見ないため、存在しないパスでも処理できる。`toRealPath()`と混同しないこと。
 
 ## toAbsolutePath() vs toRealPath()
 
-この2つは混同しやすいから要注意だよ！
+この2つは混同しやすいから要注意である！
 
 ### toAbsolutePath() - 絶対パスに変換
 
-相対パスを絶対パスに変換する。ファイルの存在チェックはしないよ。
+相対パスを絶対パスに変換する。ファイルの存在チェックはしない。
 
 ```java
 Path relative = Path.of("file.txt");
@@ -278,7 +278,7 @@ Path path = Path.of("file.txt");
 boolean exists = Files.exists(path);
 ```
 
-**注意**: シンボリックリンクの場合、リンク先の存在を確認するよ。
+**注意**: シンボリックリンクの場合、リンク先の存在を確認する。
 
 ### isDirectory() - ディレクトリ判定
 
@@ -292,7 +292,7 @@ boolean isDir = Files.isDirectory(path);
 boolean isFile = Files.isRegularFile(path);
 ```
 
-**試験ポイント**: ディレクトリの場合は`false`だよ！
+**試験ポイント**: ディレクトリの場合は`false`である！
 
 ### その他の便利メソッド
 
@@ -388,11 +388,11 @@ Path target = Path.of("target.txt");
 Files.move(source, target);
 ```
 
-移動後、元のファイルは存在しなくなるよ。
+移動後、元のファイルは存在しなくなる。
 
 ## StandardCopyOption - 超重要！
 
-コピー・移動のオプションを指定できる列挙型だよ。試験によく出る！
+コピー・移動のオプションを指定できる列挙型である。試験によく出る！
 
 ### REPLACE_EXISTING - 既存ファイルを上書き
 
@@ -437,7 +437,7 @@ Files.copy(source, target,
     StandardCopyOption.COPY_ATTRIBUTES);
 ```
 
-可変長引数だから複数指定できるよ。
+可変長引数だから複数指定できる。
 
 ### ディレクトリのコピー - 超重要な注意点！
 
@@ -449,7 +449,7 @@ Files.copy(dirSource, dirTarget);
 
 **超重要**: ディレクトリをコピーしても、**中身はコピーされない**！空のディレクトリだけが作られる。
 
-再帰的にコピーしたい場合は、`Files.walk()`などを使って自分で実装する必要があるよ。
+再帰的にコピーしたい場合は、`Files.walk()`などを使って自分で実装する必要がある。
 
 ## ファイルの読み書き
 
@@ -494,7 +494,7 @@ Files.writeString(file, "Hello, World!");
 String content = Files.readString(file);
 ```
 
-文字列として一気に読み書きできるよ。便利だけど大きいファイルには注意！
+文字列として一気に読み書きできる。便利だが大きいファイルには注意！
 
 ## ファイル属性の取得
 
@@ -532,7 +532,7 @@ System.out.println(attrs.isRegularFile());
 System.out.println(attrs.isSymbolicLink());
 ```
 
-個別に取得するより効率的だよ。
+個別に取得するより効率的である。
 
 ## よくある例外まとめ
 
@@ -674,4 +674,4 @@ Path normalized = path.normalize();  // 新しいPathが返る
 9. **createDirectory()**: 親が必要、createDirectories()は親も作る
 10. **StandardCopyOption**: REPLACE_EXISTING, COPY_ATTRIBUTES, ATOMIC_MOVE
 
-これらのポイントを完璧にマスターすれば、NIO.2の問題は余裕だよ！頑張ってね！
+これらのポイントを完璧にマスターすれば、NIO.2の問題は余裕である！頑張ろう！

@@ -2,7 +2,7 @@
 
 ## シリアライズって何？
 
-シリアライズっていうのは、**Javaオブジェクトをバイト列に変換して保存したり、ネットワーク経由で送信できるようにする仕組み**だよね。逆にバイト列からオブジェクトに戻すことを**デシリアライズ**って言うんだ。
+シリアライズっていうのは、**Javaオブジェクトをバイト列に変換して保存したり、ネットワーク経由で送信できるようにする仕組み**である。逆にバイト列からオブジェクトに戻すことを**デシリアライズ**って言うんだ。
 
 ```java
 オブジェクト → [シリアライズ] → バイト列（ファイルやネットワークで送信）
@@ -13,7 +13,7 @@
 
 ### マーカーインターフェース
 
-`Serializable`は**マーカーインターフェース**って呼ばれてて、メソッドが一つも定義されてないんだよね。単に「このクラスはシリアライズできますよ」っていう目印なんだ。
+`Serializable`は**マーカーインターフェース**って呼ばれてて、メソッドが一つも定義されてないんである。単に「このクラスはシリアライズできますよ」っていう目印である。
 
 ```java
 class Person implements Serializable {
@@ -43,7 +43,7 @@ try (ObjectInputStream in = new ObjectInputStream(
 }
 ```
 
-## transientキーワード（めっちゃ重要）
+## transientキーワード（非常に重要）
 
 ### transientの意味
 
@@ -63,7 +63,7 @@ class User implements Serializable {
 
 ### デシリアライズ後の値
 
-transientフィールドは、デシリアライズ後に**デフォルト値**になるんだよ。
+transientフィールドは、デシリアライズ後に**デフォルト値**になるんである。
 
 ```java
 User user = new User("taro", "secret123");
@@ -82,7 +82,7 @@ User user = new User("taro", "secret123");
 
 ### なぜ必要？
 
-`serialVersionUID`は**クラスのバージョン管理**に使われるんだ。これがないと、クラス構造が少し変わっただけでデシリアライズが失敗する可能性があるんだよね。
+`serialVersionUID`は**クラスのバージョン管理**に使われるんだ。これがないと、クラス構造が少し変わっただけでデシリアライズが失敗する可能性があるんである。
 
 ```java
 class Person implements Serializable {
@@ -106,11 +106,11 @@ class Person implements Serializable {
 
 - `serialVersionUID`を**明示的に定義しないと、コンパイラが自動生成する**
 - 自動生成されたIDは**クラス構造が変わると変わる**から、互換性が壊れやすい
-- だから**明示的に定義するのがベストプラクティス**だよね
+- だから**明示的に定義するのがベストプラクティス**である
 
 ## デシリアライズ時のコンストラクタ呼び出し（超重要！試験頻出）
 
-ここが**一番の引っかけポイント**じゃね？めっちゃ重要だから、しっかり覚えてね。
+ここが**一番の引っかけポイント**ではないだろうか非常に重要だから、しっかり覚えてね。
 
 ### ルール1: Serializableクラス自身のコンストラクタは呼ばれない
 
@@ -134,7 +134,7 @@ Person p = (Person) in.readObject();
 
 ### ルール2: 親クラスがSerializableでない場合、親の引数なしコンストラクタが呼ばれる！
 
-これが**超頻出の引っかけ問題**だよ！
+これが**超頻出の引っかけ問題**である！
 
 ```java
 // 親クラス：Serializableを実装していない
@@ -194,7 +194,7 @@ System.out.println(restored.species);
 
 ## staticフィールドはシリアライズされない
 
-`static`フィールドは**クラスに属する**から、シリアライズの対象外なんだよね。
+`static`フィールドは**クラスに属する**から、シリアライズの対象外なんである。
 
 ```java
 class Counter implements Serializable {
@@ -217,11 +217,11 @@ System.out.println(restored.instanceCount);  // 5 （復元される）
 System.out.println(Counter.totalCount);      // 100 （現在のJVMの値）
 ```
 
-**ポイント：** staticフィールドは**現在のJVMの状態**を反映するよ。
+**ポイント：** staticフィールドは**現在のJVMの状態**を反映する。
 
 ## オブジェクトグラフのシリアライズ
 
-オブジェクトが他のオブジェクトを参照してる場合、**参照先のオブジェクトもSerializableじゃないとダメ**なんだ。
+オブジェクトが他のオブジェクトを参照してる場合、**参照先のオブジェクトもSerializableじゃないとダメ**である。
 
 ```java
 class Address implements Serializable {  // これもSerializable必須！
@@ -264,7 +264,7 @@ BadPerson bad = new BadPerson("太郎", new NonSerializable());
 out.writeObject(bad);  // NotSerializableException が発生！
 ```
 
-**試験ポイント：** オブジェクトグラフのすべてのオブジェクトが`Serializable`を実装してないとダメだよ。
+**試験ポイント：** オブジェクトグラフのすべてのオブジェクトが`Serializable`を実装してないとダメである。
 
 ## カスタムシリアライゼーション
 
@@ -275,7 +275,7 @@ out.writeObject(bad);  // NotSerializableException が発生！
 ```java
 class CustomPerson implements Serializable {
     private String name;
-    private transient String password;  // transientだけど保存したい
+    private transient String password;  // transientだが保存したい
 
     // カスタムシリアライゼーション（privateメソッド）
     private void writeObject(ObjectOutputStream out) throws IOException {
@@ -453,4 +453,4 @@ class Person implements Serializable {
 7. **serialVersionUIDは明示的に定義すべき**（互換性管理）
 8. **カスタムシリアライゼーションはprivateメソッド**で実装
 
-これだけ押さえとけば、試験のシリアライゼーション問題は完璧だよね！
+これだけ押さえとけば、試験のシリアライゼーション問題は完璧である！
